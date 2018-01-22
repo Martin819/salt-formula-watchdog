@@ -1,9 +1,9 @@
 
 ==================================
-watchdog Formula
+Watchdog Formula
 ==================================
 
-Service watchdog description
+Install and configure watchdog daemon
 
 
 Sample Pillars
@@ -16,12 +16,13 @@ Single watchdog service
     watchdog:
       server:
         enabled: true
+        watchdog-timeout: 60
 
 
 More Information
 ================
 
-* A link to project home
+https://github.com/torvalds/linux/blob/master/Documentation/watchdog/watchdog-api.txt
 
 
 Documentation and Bugs
@@ -54,8 +55,3 @@ Any questions or feedback is always welcome so feel free to join our IRC
 channel:
 
     #salt-formulas @ irc.freenode.net
-
-Read more
-=========
-
-* links
