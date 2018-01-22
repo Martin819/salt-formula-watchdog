@@ -1,0 +1,10 @@
+applications:
+- watchdog
+classes:
+- service.watchdog.support
+parameters:
+  watchdog:
+    server:
+      enabled: true
+      bind:
+        address: 0.0.0.0

@@ -1,0 +1,3 @@
+watchdog:
+  server:
+    enabled: true
