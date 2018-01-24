@@ -1,1 +1,11 @@
-{%- set server = salt['grains.filter_by'](base_defaults, merge=salt['pillar.get']('watchdog:server')) %}
+{% set server = salt['grains.filter_by']({
+    'HP': {
+      'kernel_module': 'hpwdt',
+    },
+    'DELL': {
+      'kernel_module': 'iTCO_wdt',
+    },
+    'QEMU': {
+      'kernel_module': 'softdog',
+    },
+}, grain='manufacturer', merge=salt['pillar.get']('watchdog:server')) %}
