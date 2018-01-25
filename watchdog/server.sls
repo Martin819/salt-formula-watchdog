@@ -13,6 +13,7 @@ watchdog_packages:
     - repl: watchdog_module="{{ server.kernel_module }}"
     - require:
       - pkg: watchdog_packages
+    - require_in: watchdog_service
 
 {%- if server.kernel.parameters %}
 /etc/modprobe.d/kernel_module.conf:
@@ -20,6 +21,7 @@ watchdog_packages:
     - name: /etc/modprobe.d/{{ server.kernel_module }}.conf
     - template: jinja
     - source: salt://watchdog/files/kernel_module.conf
+    - makedirs: True
     - require:
       - pkg: watchdog_packages
     - require_in: watchdog_service
@@ -40,6 +42,5 @@ watchdog_service:
     - name: watchdog
     - watch:
       - file: /etc/watchdog.conf
-      - file: /etc/default/watchdog
 
 {%- endif %}
