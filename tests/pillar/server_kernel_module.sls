@@ -3,9 +3,8 @@ watchdog:
     enabled: true
     timeout: 60
     kernel:
-      parameters:
+      parameter:
         soft_panic: 1
         parameter: second
         value_only: none
-    kernel_module:
-      
+    module:

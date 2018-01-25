@@ -2,9 +2,9 @@ watchdog:
   server:
     enabled: true
     timeout: 60
-    # These parametrs shoudl create file in /etc/modprobe.d/kernel_module.conf with content "option kernel_module soft_panic=1 parameter=second value_only"
+    # These parametrs shoudl create file in /etc/modprobe.d/kernel_module.conf with content "option module soft_panic=1 parameter=second value_only"
     kernel:
-      parameters:
+      parameter:
         soft_panic: 1
         parameter: second
         value_only: none

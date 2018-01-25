@@ -20,3 +20,23 @@ properties:
       Seting "watchdog-timer" config parameter placed in /etc/watchdog.conf
     type: number
     minimum: 0
+  kernel:
+    description: |
+      Parameters for the kernel module which are used for loading the kernel module
+    type: object
+    parameters:
+      parameter:
+        description: |
+          Name of the watchdog kernel module
+        type: object
+        minProperties: 1
+        patternProperties:
+          '^[a-z][-a-z0-9_]*$':
+            $ref: "#/definitions/_module"
+
+definitions:
+  _module:
+    description: |
+      Watchdog Kernel module parameter
+    type: string
+    example: "1"

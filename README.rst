@@ -19,7 +19,7 @@ Single watchdog service
         timeout: 60
         # Salt Stack will automatically detect the necessary kernel module which needs to be loaded (ex. hpwdt). You may specify the kernel parameters if needed:
         kernel:
-          parameters:
+          parameter:
             soft_panic: 1
             parameter: value
             parameter_only_without_value: none
