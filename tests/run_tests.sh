@@ -45,6 +45,7 @@ setup_virtualenv() {
     virtualenv $VENV_DIR
     source ${VENV_DIR}/bin/activate
     pip install salt${PIP_SALT_VERSION}
+    pip install jsonschema
     if [[ -f ${CURDIR}/pip_requirements.txt ]]; then
        pip install -r ${CURDIR}/pip_requirements.txt
     fi
