@@ -21,7 +21,7 @@ SCHEMARDIR=${SCHEMARDIR:-"${CURDIR}/../${FORMULA_NAME}/schemas/"}
 
 SALT_FILE_DIR=${SALT_FILE_DIR:-${BUILDDIR}/file_root}
 SALT_PILLAR_DIR=${SALT_PILLAR_DIR:-${BUILDDIR}/pillar_root}
-SALT_CONFIG_DIR=${SALT_CONFIG_DIR:-${BUILDDIR}/salt}
+SALT_CONFIG_DIR=${SALT_CONFIG_DIR:-${BUILDDIR}/deps/salt-formula-salt}
 SALT_CACHE_DIR=${SALT_CACHE_DIR:-${SALT_CONFIG_DIR}/cache}
 SALT_CACHE_EXTMODS_DIR=${SALT_CACHE_EXTMODS_DIR:-${SALT_CONFIG_DIR}/cache_master_extmods}
 
@@ -211,6 +211,10 @@ run_model_validate(){
         minion_id="${state_name}"
         # in case debug-reruns, usefull to make cleanup
         [ -n "$DEBUG" ] && { salt_run saltutil.clear_cache; salt_run saltutil.refresh_pillar; salt_run saltutil.sync_all; }
+        echo "minion_id: " ${minion_id}
+        echo "FORMULA_NAME: " ${FORMULA_NAME}
+        echo "state_name: " ${state_name}
+        echo "SALT_CONFIG_DIR: " ${SALT_CONFIG_DIR}
         salt_run --id=${minion_id} modelschema.model_validate ${FORMULA_NAME} ${state_name} || { log_err "Execution of ${FORMULA_NAME}.${state_name} failed"; exit 1 ; }
     done
 }
