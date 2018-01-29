@@ -217,7 +217,7 @@ run_model_validate(){
         echo "SALT_CONFIG_DIR: " ${SALT_CONFIG_DIR}
         echo "SALT_CACHE_DIR: " ${SALT_CACHE_DIR}
         echo "SALT_CACHE_EXTMODS_DIR: " ${SALT_CACHE_EXTMODS_DIR}
-        salt-call --retcode-passthrough --local -c ${DEPSDIR}/salt-formula-salt --log-file=/dev/null --id=${minion_id} modelschema.model_validate ${FORMULA_NAME} ${state_name} || { log_err "Execution of ${FORMULA_NAME}.${state_name} failed"; exit 1 ; }
+        salt_run -m ${DEPSDIR}/salt-formula-salt --id=${minion_id} modelschema.model_validate ${FORMULA_NAME} ${state_name} || { log_err "Execution of ${FORMULA_NAME}.${state_name} failed"; exit 1 ; }
     done
 }
 
