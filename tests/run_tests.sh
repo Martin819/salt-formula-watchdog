@@ -21,9 +21,9 @@ SCHEMARDIR=${SCHEMARDIR:-"${CURDIR}/../${FORMULA_NAME}/schemas/"}
 
 SALT_FILE_DIR=${SALT_FILE_DIR:-${BUILDDIR}/file_root}
 SALT_PILLAR_DIR=${SALT_PILLAR_DIR:-${BUILDDIR}/pillar_root}
-SALT_CONFIG_DIR=${SALT_CONFIG_DIR:-${BUILDDIR}/deps/salt-formula-salt}
-SALT_CACHE_DIR=${SALT_CACHE_DIR:-${BUILDDIR}/deps/salt/cache}
-SALT_CACHE_EXTMODS_DIR=${SALT_CACHE_EXTMODS_DIR:-${BUILDDIR}/deps/salt/cache_master_extmods}
+SALT_CONFIG_DIR=${SALT_CONFIG_DIR:-${BUILDDIR}/salt}
+SALT_CACHE_DIR=${SALT_CACHE_DIR:-${SALT_CONFIG_DIR}/cache}
+SALT_CACHE_EXTMODS_DIR=${SALT_CACHE_EXTMODS_DIR:-${SALT_CONFIG_DIR}/cache_master_extmods}
 
 SALT_OPTS="${SALT_OPTS} --retcode-passthrough --local -c ${SALT_CONFIG_DIR} --log-file=/dev/null"
 
@@ -217,6 +217,7 @@ run_model_validate(){
         echo "SALT_CONFIG_DIR: " ${SALT_CONFIG_DIR}
         echo "SALT_CACHE_DIR: " ${SALT_CACHE_DIR}
         echo "SALT_CACHE_EXTMODS_DIR: " ${SALT_CACHE_EXTMODS_DIR}
+        SALT_OPTS="--retcode-passthrough --local -c ${DEPSDIR}/salt-formula-salt --log-file=/dev/null"
         salt_run --id=${minion_id} modelschema.model_validate ${FORMULA_NAME} ${state_name} || { log_err "Execution of ${FORMULA_NAME}.${state_name} failed"; exit 1 ; }
     done
 }
