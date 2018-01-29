@@ -8,10 +8,8 @@ addons:
     - apt-transport-https
 
 install:
-  - git fetch --unshallow --tags
   - pip install PyYAML
   - pip install virtualenv
-  - pip install reno
   - |
     test -e Gemfile || cat <<EOF > Gemfile
     source 'https://rubygems.org'
@@ -20,7 +18,7 @@ install:
     gem 'kitchen-docker'
     gem 'kitchen-inspec'
     gem 'inspec'
-    gem 'kitchen-salt'   #, :git => 'https://github.com/salt-formulas/kitchen-salt.git'
+    gem 'kitchen-salt', :git => 'https://github.com/salt-formulas/kitchen-salt.git'
   - bundle install
 
 env:
