@@ -6,5 +6,3 @@ watchdog:
     kernel:
       parameter:
         soft_panic: 1
-        parameter: second
-        value_only: none
